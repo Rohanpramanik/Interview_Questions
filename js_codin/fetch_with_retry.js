@@ -1,3 +1,7 @@
+// Approach - write a fuction which fetch api and pass a parameter having no of retry like 2 or 3 
+// whatevr you want to have no of retry option, and if there is any error check retry is more then 0 then call the same fuction
+// which you are using to fetch api by passing retry-1, like a recursive function.
+
 async function fetchApi(url, retry = 3, delay=1000) {
   try {
     let response = await fetch(url);
