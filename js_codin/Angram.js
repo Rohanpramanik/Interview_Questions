@@ -1,9 +1,6 @@
 //check the strings are angram to each other
 //angram means both the string should have same no character in any order
 
-import { Recommend } from "@mui/icons-material";
-
-
 //1nd way
 //this is easiest way if they accept inbuild which they will not
 const checkAnagram2 = (str1, str2) => {
