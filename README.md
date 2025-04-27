@@ -17,12 +17,10 @@ These questions are designed to help you:
 - Prepare yourself for **coding interviews**.
 
 ### 📝 Common Topics Covered:
-- **JavaScript Basics**: Closures, Hoisting, Event Loop
+- **JavaScript Basics**: Closures, Hoisting, Event Loop and so on..
 - **HTML & CSS**: Flexbox, Grid, Semantic HTML
 - **React**: Lifecycle Methods, Hooks, Redux
-- **Data Structures & Algorithms**: Arrays, Linked Lists, Trees, Sorting
-- **Backend Concepts**: REST APIs, Databases, Authentication
-- **Version Control**: Git, GitHub workflows
+- **others Concepts**: REST APIs, Databases, Authentication
 
 ---
 
