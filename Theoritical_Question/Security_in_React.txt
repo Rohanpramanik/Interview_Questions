@@ -1,0 +1,117 @@
+There are many way to secure out web application few of them are :
+
+1. Avoid XSS (Cross-Site Scripting) :
+
+Cross-Site Scripting (XSS) is a type of security vulnerability where an attacker injects malicious scripts (usually JavaScript) into your web pages and still your data.
+
+Generally this could happen when your app doesn't properly sanitize inputs
+and hackers are able to perform below actions :
+
+--Steal cookies or tokens
+--Hijack sessions
+--Redirect users
+--Modify the DOM
+--Log keystrokes
+
+what we can do to avoid this :
+
+use jsx to render dynamic data because react automatically do certain sanitization
+<div>{userInput}</div>
+
+Never use dangerouslySetInnerHTML unless absolutely necessary.
+EX--<div dangerouslySetInnerHTML={{ __html: userInput }} />
+
+Sanitize all user-generated content using libraries like DOMPurify if rendering HTML is unavoidable.
+DOMPurify will strip potentially dangerous HTML tags like <script>, <img>, etc., while keeping safe HTML elements like <p>, <b>, and <a>.
+EX--check XSS_example.js file
+
+2. Use Environment Variables Safely
+
+Environment variables are key-value pairs used to store configuration settings outside of your application code. These are commonly used for things like:
+
+API keys
+Database connection strings
+Authentication tokens
+
+You should not store secrets (like API keys, tokens) in .env files that are bundled with the frontend — they are visible in the browser.
+
+In a frontend React app (or any client-side code), anything you include in the code can be viewed by anyone who has access to the browser's developer tools.
+
+For example:
+
+If you include sensitive keys like API keys or authentication tokens directly in the code (even in .env files), they will end up in the bundled JavaScript (the final code that's sent to the browser).
+
+Users can easily open the developer tools, find the keys in the source code, and misuse them.
+Configuration settings for different environments like production or development
+
+When you run npm run build (or npm start in development mode), React will replace any references to process.env.REACT_APP_API_KEY in your code with the value of that environment variable. In a production build, the key will be bundled into the JavaScript file that the user can download and see. This means anyone could steal your API key and use it to make requests to your backend or third-party service.
+
+How can we handle this :
+
+--Never store them in .env files if those files are part of the frontend code.
+
+--Move private keys to the server: The best practice is to handle private keys and sensitive operations on the backend server (node.js, etc.), where they can remain hidden from the client.
+
+For example, if you need to make an API call to a third-party service, don’t do it directly from React. Instead, create a backend route (using Node.js or another backend framework) to make the call, and let the backend forward the results to your frontend.
+
+--Only use public-facing keys on the client side (e.g., Firebase config), and keep anything sensitive on the server.
+
+3. Use HTTPS
+Always serve your app over HTTPS to encrypt traffic and prevent man-in-the-middle (MITM) attacks.
+
+4. Authentication & Authorization
+
+Use token-based auth (JWT or OAuth).
+
+Store tokens securely:
+
+--Access tokens: in memory or HTTP-only cookies (preferably HTTP-only for security).
+--Avoid localStorage/sessionStorage for sensitive tokens (vulnerable to XSS).
+--Implement route guards to restrict access to protected pages based on user roles or login state.
+
+5. Input Validation and Escaping
+
+Validate all form inputs (client and server).
+Sanitize inputs to avoid injection attacks.
+
+6. Secure Dependencies
+
+Regularly audit your packages:
+
+bash
+Copy
+Edit
+npm audit fix
+Avoid unnecessary dependencies.
+
+Use tools like Snyk or GitHub Dependabot.
+
+7. CSP (Content Security Policy)
+Enforce a strict Content Security Policy header from your server to control which sources can load scripts/styles/images.
+
+CSP allows you to specify which external resources (scripts, stylesheets, images, etc.) are allowed to be loaded and executed by the browser. If an attempt is made to load resources from an unapproved source, the browser will block the request.
+
+--Controls sources for resources: CSP lets you control where your scripts, images, styles, fonts, and other resources can come from.
+
+--Prevents malicious content: It prevents attacks like XSS, where an attacker might inject malicious scripts into your page.
+
+--Restricts inline scripts: It can block inline scripts and styles (e.g., scripts inside <script> tags or style tags), which is a common way attackers inject malicious code.
+
+8. Prevent Clickjacking
+
+Add this header from your server:
+
+mathematica
+Copy
+Edit
+X-Frame-Options: DENY
+
+9. Security Headers
+
+Use headers like:
+X-XSS-Protection
+Strict-Transport-Security
+X-Content-Type-Options
+
+10. Avoid Client-Side Secrets
+Don’t do sensitive logic (like password hashing or token creation) in React — do that on the backend.

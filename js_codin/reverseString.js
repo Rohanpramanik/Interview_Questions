@@ -1,3 +1,5 @@
+//very common
+
 // reverse the string
 
 function reverseString(arg) {
