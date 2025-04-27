@@ -6,6 +6,8 @@ In this repository, I’ve gathered the **most frequently asked interview questi
 
 💡 **Tip**: While interviewers might not ask the exact question, the **concepts** and **patterns** in the questions will be relevant. So, it's a good idea to be hands-on with these concepts and have a solid understanding.
 
+📝 **Note**: For a comprehensive collection of coding challenges, I highly recommend checking out the repositories listed above. You'll find a wide variety of coding questions to practice.
+
 ### ✨ Key Concepts to Focus On
 - **Frontend**
 - **General Programming Concepts**
@@ -21,6 +23,7 @@ These questions are designed to help you:
 - **HTML & CSS**: Flexbox, Grid, Semantic HTML
 - **React**: Lifecycle Methods, Hooks, Redux
 - **others Concepts**: REST APIs, Databases, Authentication
+
 
 ---
 
