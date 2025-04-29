@@ -11,6 +11,11 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
+      
+      // when you want to some buffer like 100px I have added here then only use 'document.body.offsetHeight'
+      // else use document.documentElement.scrollHeight because offsetHeight didn't give accurate height'
+      //if ( window.innerHeight + window.scrollY >= document.documentElement.scrollHeight )
+      
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 100
