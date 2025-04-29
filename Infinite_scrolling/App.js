@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+//Added both basic and advanced version of infinite scrolling
+// Initially, you can implement basic scrolling so that later the interviewer can ask for changes to make it an advanced version.
+
 
 //Basic infinite scrolling
 export default function App() {
