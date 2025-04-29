@@ -57,8 +57,8 @@ export const App2=()=> {
       );
     };
 
-    //based on poition and timer add more content
-    //if the timer end and your are near to end of your content add more content
+    //based on position and timer add more content
+    //if the timer end and you are near to bottom of your content then add more content
     const handleScroll = () => {
       if (timerCount) clearTimeout(timerCount);
       timerCount = setTimeout(() => {
