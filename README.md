@@ -231,3 +231,11 @@ printName({ name: 'Charlie', age: 25 }); // Might trigger deoptimization
 | Hidden Classes  | Make JS objects behave predictably | Object blueprint or “shape”    |
 | Inline Caching  | Speed up repeated property access  | Like a shortcut or memory memo |
 
+### 4. What Is the Event Loop?
+
+The event loop is the mechanism that JavaScript uses to excute code.
+
+JavaScript is **single-threaded**, meaning it executes one piece of code at a time. The event loop helps manage asynchronous operations (like I/O, timers, Promises) by placing them into queues and executing them when the **call stack** is empty.
+
+---
+
