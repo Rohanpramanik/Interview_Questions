@@ -35,9 +35,29 @@ These questions are designed to help you:
 
 Every object in javascript has by default properties or hidden internal property and those properties called Prototype of that object, commonly accessed via `__proto__`.
 
-![image](https://github.com/user-attachments/assets/59981cb1-bf54-473b-9520-416fc234b24c)
+> 🧬 The prototype is the mechanism by which JavaScript implements inheritance.
 
+#### 🔍 Key Points:
+- All objects in JavaScript inherit from a prototype.
+- Functions have a `prototype` property that is used when creating new instances.
+- The prototype chain continues until it reaches `null`.
 
+```js
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHello = function () {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+const john = new Person('John');
+john.sayHello(); // Hello, my name is John
+```
+#### 📌 Summary:
+- A **prototype** is an object that other objects inherit properties from.
+- It forms the foundation of **prototypal inheritance** in JavaScript.
+  
 ### 2. What is Prototypal Inheritance?
 
 Prototypal inheritance allows one object to inherit properties and methods from another object via the prototype chain.
@@ -50,4 +70,55 @@ This chain of inheritance is known as the **prototype chain**.
 
 > 🧬 This is JavaScript’s way of achieving inheritance without classical classes.
 > 
-...Loading
+### 3. What is Just-In-Time (JIT) Compilation and How Does It Optimize Performance?
+
+JIT (Just-In-Time) Compilation is a technique used by modern JavaScript engines like **V8**, **SpiderMonkey**, and **JavaScriptCore** to **convert JavaScript into machine code at runtime**—making execution significantly faster than traditional interpretation.
+
+> 🚀 JIT helps JavaScript run faster by optimizing code while it runs, using real-time feedback from the program's behavior.
+
+#### 🔧 Why is this important?
+
+JavaScript is dynamically typed and interpreted, which can make it slower. JIT allows the engine to:
+- Analyze code during execution.
+- Apply runtime optimizations.
+- Avoid repeated interpretation of the same logic.
+
+---
+
+### 🛠️ V8 Engine’s Two-Tier JIT System
+
+V8 (used in **Chrome** and **Node.js**) uses **two compilers**:
+
+| Compiler        | Role                              | Optimization Level | Uses Runtime Feedback | Can Deoptimize |
+|----------------|-----------------------------------|--------------------|------------------------|----------------|
+| 🔹 Ignition     | Baseline Interpreter               | Low                | ❌ No                  | ❌ No           |
+| 🔹 TurboFan     | Optimizing JIT Compiler            | High               | ✅ Yes                 | ✅ Yes          |
+
+#### 🔹 **Ignition (Baseline Interpreter)**
+- Starts execution quickly.
+- Converts JS into bytecode and interprets it line-by-line.
+- Prioritizes fast startup over long-term performance.
+
+#### 🔹 **TurboFan (Optimizing Compiler)**
+- Kicks in once a function becomes “hot” (used frequently).
+- Compiles hot functions into **highly optimized machine code**.
+- Uses techniques like:
+  - Type feedback
+  - Inline caching
+  - Hidden classes
+
+---
+
+### 🧪 Example: Why Optimization Matters
+
+```js
+function add(x, y) {
+  return x + y;
+}
+
+for (let i = 0; i < 1_000_000; i++) {
+  add(1, 2); // Hot path: optimized by TurboFan
+}
+
+add('a', 'b'); // Causes deoptimization (assumption breaks)
+
