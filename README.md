@@ -183,6 +183,9 @@ const p2 = new Person(); // Slower now, because shapes diverged
 
 **Inline Caching (IC)** is a performance technique that remembers where object properties are in memory after the first access, so it doesn’t have to look them up repeatedly.
 
+- First Access: V8 performs a lookup to find the property location.
+- Subsequent Accesses: V8 uses the cached location, avoiding repeated lookups.
+
 #### 🔁 Example:
 
 ```js
