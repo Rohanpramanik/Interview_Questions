@@ -239,3 +239,55 @@ JavaScript is **single-threaded**, meaning it executes one piece of code at a ti
 
 ---
 
+### 5. How Do Microtasks vs Macrotasks Execute?
+
+🧪 **Microtasks vs Macrotasks**  
+
+JavaScript uses two main queues to manage async operations:
+
+| Task Type  | Examples                         | Queue Name       | Priority     |
+|------------|----------------------------------|------------------|--------------|
+| Microtasks | `Promise.then()`, `queueMicrotask()` | Microtask Queue  | ✅ Higher     |
+| Macrotasks | `setTimeout()`, `setInterval()`, I/O | Macrotask Queue  | ⚠️ Lower      |
+
+### 🔁 How the Event Loop Works :
+
+1. Execute all synchronous code (main call stack).  
+2. Process all microtasks in the queue (in order).  
+3. Then process **one** macrotask (like `setTimeout`).  
+4. Repeat steps 2–3 until the app exits.
+
+### 🤔 Why does `Promise.then()` run before `setTimeout()`?
+
+Because Promises go into the **microtask queue**, which is always processed **before** any macrotask like `setTimeout`.
+
+### 🔬 Example:
+
+```js
+console.log("start");
+
+setTimeout(() => {
+  console.log("timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("promise");
+});
+
+console.log("end");
+```
+
+#### 🧾 Output:
+
+```
+start
+end
+promise   ✅ (microtask runs after sync)
+timeout   ⚠️ (macrotask runs after microtasks)
+```
+
+### 🧠 Key Takeaways
+
+- **Microtasks are fast-tracked**: they run immediately after current sync code, before anything else.
+- **Macrotasks wait**: they are only processed once the microtask queue is empty.
+- You can get unexpected order of execution if you're not careful with these queues.
