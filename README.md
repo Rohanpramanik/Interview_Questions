@@ -109,7 +109,7 @@ V8 (used in **Chrome** and **Node.js**) uses **two compilers**:
 
 ---
 
-### 🧪 Example: Why Optimization Matters
+### 🧪 Example: 
 
 ```js
 function add(x, y) {
@@ -121,4 +121,13 @@ for (let i = 0; i < 1_000_000; i++) {
 }
 
 add('a', 'b'); // Causes deoptimization (assumption breaks)
+```
+![image](https://github.com/user-attachments/assets/ac1ae0bf-878d-465b-9b47-ff63c405321f)
+
+### 🎯 Performance Benefits
+
+- **Fast Startup**: Ignition allows for immediate execution, reducing initial load times.
+- **Adaptive Optimization**: By focusing resources on frequently executed code, TurboFan ensures that the most critical parts of the application run efficiently.
+- **Efficient Memory Usage**: The separation of concerns between Ignition and TurboFan allows for optimized memory management, balancing between quick execution and deep optimization.
+
 
